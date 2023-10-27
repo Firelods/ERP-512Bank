@@ -1,6 +1,10 @@
 export interface Reappro {
-  date: string;
-  fournisseur: string;
-  produit: string;
+  dateCommande?: string;
+  dateReception?: string;
+  nomFournisseur: string;
+  nomProduit: string;
   etat: string;
+  montant?: number;
+  quantite?: number;
+
 }

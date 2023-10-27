@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddReapproComponent } from './add-reappro.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('AddReapproComponent', () => {
   let component: AddReapproComponent;
@@ -8,9 +12,10 @@ describe('AddReapproComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddReapproComponent ]
+      imports: [MatFormFieldModule, MatSelectModule, ReactiveFormsModule, BrowserAnimationsModule],
+      declarations: [AddReapproComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(AddReapproComponent);
     component = fixture.componentInstance;

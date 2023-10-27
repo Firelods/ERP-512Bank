@@ -20,6 +20,14 @@ import { AddReapproComponent } from './stocks/add-reappro/add-reappro.component'
 import { ShowInventoryComponent } from './stocks/show-inventory/show-inventory.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
+import { DatabaseComponent } from './database/database.component';
+import { HorairesBoutiqueComponent } from './horaires-boutique/horaires-boutique.component';
+import { RessourcesHumainesComponent } from './ressources-humaines/ressources-humaines.component';
+import { CartesComponent } from './cartes/cartes.component';
+import { IncidentFAQComponent } from './incident-page/incident-faq/incident-faq.component';
+import { IncidentReportComponent } from './incident-page/incident-report/incident-report.component';
+import { IncidentDailyComponent } from './incident-page/incident-daily/incident-daily.component';
+import { ComptabiliteComponent } from './comptabilite/comptabilite.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +43,15 @@ import { MatSelectModule } from '@angular/material/select';
     ReapproComponent,
     AddFournisseurComponent,
     AddReapproComponent,
-    ShowInventoryComponent
+    ShowInventoryComponent,
+    DatabaseComponent,
+    HorairesBoutiqueComponent,
+    RessourcesHumainesComponent,
+    CartesComponent,
+    IncidentFAQComponent,
+    IncidentReportComponent,
+    IncidentDailyComponent,
+    ComptabiliteComponent
   ],
   imports: [
     MatSelectModule,
@@ -46,7 +62,7 @@ import { MatSelectModule } from '@angular/material/select';
     HttpClientModule,
     BrowserAnimationsModule
   ],
-  providers: [HttpClient],
+  providers: [HttpClient, StocksComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

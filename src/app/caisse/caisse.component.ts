@@ -1,3 +1,4 @@
+import { CartService } from './../service/cart.service';
 import { Component } from '@angular/core';
 import { Incident } from '../incident';
 import { Cart } from '../cart';
@@ -11,10 +12,11 @@ import { ProductService } from '../service/product.service';
 export class CaisseComponent {
   listIncidents: Incident[] = [];
   inputValue: string = '';
-  cart: Cart = { listProduct: [], total: 0 };
+  produitVide: string[] = [];
+  cart: Cart = { listeProduits: [], montant: 0 };
   loading: boolean = false;
   validate: boolean = false;
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private cartService :CartService) { }
   ngOnInit(): void {
     this.listIncidents.push({
       id: 1,
@@ -103,8 +105,8 @@ export class CaisseComponent {
     if (trouve) {
       // add the product to the cart if it is not already present
       var trouve2 = -1;
-      for (var i = 0; i < this.cart.listProduct.length; i++) {
-        if (this.cart.listProduct[i].produit.idProduit == trouve.idProduit) {
+      for (var i = 0; i < this.cart.listeProduits.length; i++) {
+        if (this.cart.listeProduits[i].produit.idProduit == trouve.idProduit) {
           trouve2 = i;
           console.log('produit déjà présent');
 
@@ -114,54 +116,62 @@ export class CaisseComponent {
       console.log(trouve2);
 
       if (trouve2 == -1) {
-        this.cart.listProduct.push({ produit: trouve, quantity: 1 });
+        this.cart.listeProduits.push({ produit: trouve, quantity: 1 });
       } else {
         console.log('donc on incrémente');
 
-        this.cart.listProduct[trouve2].quantity++;
+        this.cart.listeProduits[trouve2].quantity++;
       }
       // update total
-      this.cart.total = this.cart.listProduct.reduce(
+      this.cart.montant = this.cart.listeProduits.reduce(
         (total, item) => total + item.produit.prix * item.quantity,
         0
       );
-      this.cart.total = Math.round(this.cart.total * 100) / 100;
+      this.cart.montant = Math.round(this.cart.montant * 100) / 100;
     }
     this.inputValue = '';
   }
 
   deleteProduct(id: number) {
     var trouve = -1;
-    for (var i = 0; i < this.cart.listProduct.length; i++) {
-      if (this.cart.listProduct[i].produit.idProduit == id) {
+    for (var i = 0; i < this.cart.listeProduits.length; i++) {
+      if (this.cart.listeProduits[i].produit.idProduit == id) {
         trouve = i;
         break;
       }
     }
     if (trouve != -1) {
       console.log('produit trouvé');
-      if (this.cart.listProduct[trouve].quantity > 1) {
+      if (this.cart.listeProduits[trouve].quantity > 1) {
         console.log('donc on décrémente');
-        this.cart.listProduct[trouve].quantity--;
+        this.cart.listeProduits[trouve].quantity--;
       } else {
 
-        this.cart.listProduct.splice(trouve, 1);
+        this.cart.listeProduits.splice(trouve, 1);
       }
-      this.cart.total = this.cart.listProduct.reduce(
+      this.cart.montant = this.cart.listeProduits.reduce(
         (total, item) => total + item.produit.prix * item.quantity,
         0
       );
-      this.cart.total = Math.round(this.cart.total * 100) / 100;
+      this.cart.montant = Math.round(this.cart.montant * 100) / 100;
     }
   }
   validatePaiement() {
     console.log('paiement validé');
-    if (this.cart.total == 0) {
+    if (this.cart.montant == 0) {
       return;
     }
-    this.showPopup();
-    this.cart.listProduct = [];
-    this.cart.total = 0;
+
+    this.cartService.addCart(this.cart).subscribe((data: any)=>{
+      if(data.status==false)
+      {
+        this.produitVide.push(data.item);
+      }else{
+        this.showPopup();
+        this.viderPanier();
+      }
+    });
+
   }
 
   showPopup(): void {
@@ -176,21 +186,21 @@ export class CaisseComponent {
     }, Math.floor(Math.random() * 2000) + 1000);
   }
   viderPanier() {
-    this.cart.listProduct = [];
-    this.cart.total = 0;
+    this.cart.listeProduits = [];
+    this.cart.montant = 0;
   }
 
   essenceInCart(): boolean {
     var cpt = 0;
     var trouve = false;
-    for (var i = 0; i < this.cart.listProduct.length; i++) {
-      if (this.cart.listProduct[i].produit.nom == "Essence" || this.cart.listProduct[i].produit.nom == "Hydrocarbure" || this.cart.listProduct[i].produit.nom == "Gasoil" || this.cart.listProduct[i].produit.nom == "Batterie") {
+    for (var i = 0; i < this.cart.listeProduits.length; i++) {
+      if (this.cart.listeProduits[i].produit.nom == "Essence" || this.cart.listeProduits[i].produit.nom == "Hydrocarbure" || this.cart.listeProduits[i].produit.nom == "Gasoil" || this.cart.listeProduits[i].produit.nom == "Batterie") {
         cpt++;
         trouve = true;
       }
     }
     if (trouve) {
-      return cpt == this.cart.listProduct.length;
+      return cpt == this.cart.listeProduits.length;
     }
     return false;
   }

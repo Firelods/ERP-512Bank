@@ -1,15 +1,15 @@
 <div class="mainContainer">
   <div class="incidentContainer">
     <div class="leftTitles">
-      <div>FAQ des incidents</div>
-      <div>Reporter un incident</div>
-      <div>Incidents journaliers</div>
+      <div class="menu" [class]="route()=='FAQ'?'choosed':''" routerLink="FAQ">FAQ des incidents</div>
+      <div class="menu" [class]="route()=='report'?'choosed':''"  routerLink="report">Reporter un incident</div>
+      <div class="menu" [class]="route()=='daily'?'choosed':''"  routerLink="daily">Incidents journaliers</div>
     </div>
-    <div class="rightPart">
-      <div class="listIncident"><app-incidents *ngFor="let incident of listIncidents"
+    <div  class="rightPart">
+      <div *ngIf="route()=='FAQ'" class="listIncident"><app-incidents *ngFor="let incident of listIncidents"
           [incident]="incident"></app-incidents></div>
-      <div class="separator"></div>
-      <div class="textPart">
+      <div *ngIf="route()=='FAQ'" class="separator"></div>
+      <div *ngIf="route()=='FAQ'" class="textPart">
         <div class="incidentTitle">Que faire en cas d’{{incidentSelected.title}} ?</div>
         <div class="incidentDesc">En cas d’incendie dans la station à essence, veuillez garder le calme et sortir de
           l’établissement en prenant soin de fermer les portes coupe feu. Regroupez vous sur le parking de sorte à vous

@@ -15,6 +15,16 @@ li.headers {
   padding-top: 2%;
   background-color: white;
 }
+li.bottom {
+  position: sticky;
+  bottom: 0px;
+  padding-top: 2%;
+  background-color: white;
+}
+#priceInput,#quantityProduct{
+  width: 12%;
+}
+
 ul {
   list-style: none;
   padding: 0;
@@ -43,6 +53,10 @@ input {
   border-radius: 3px;
   border: none;
   font-size: 1.1em;
+}
+
+.priceEdit{
+  width: 12%;
 }
 
 input {

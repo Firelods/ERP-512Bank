@@ -1,8 +1,8 @@
 <li>
-  <div class="date">{{this.reappro.date.slice(5)}}</div>
-  <div class="fournisseur">{{this.reappro.fournisseur}}</div>
-  <div class="produit">{{this.reappro.produit}}</div>
-  <div class="etat">
+  <div class="date">{{this.reappro.dateCommande!.slice(5)}}</div>
+  <div class="fournisseur">{{this.reappro.nomFournisseur}}</div>
+  <div class="produit">{{this.reappro.nomProduit}}</div>
+  <div class="etat" (click)="changeState(this.reappro.nomFournisseur,this.reappro.nomProduit,this.reappro.etat)">
     <div class="pumpState" *ngIf="this.reappro.etat=='canceled'">
       <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="10" cy="10.5" r="10" fill="#FF3D00" />
@@ -19,5 +19,5 @@
       </svg>En cours
     </div>
   </div>
-  <div [class]="this.reappro.etat=='inProgress'?'':'grey'" class="annuler">Annuler</div>
+  <div [class]="this.reappro.etat=='inProgress'?'':'grey'" class="annuler" (click)="deleteReappro(this.reappro.nomFournisseur,this.reappro.nomProduit)">Annuler</div>
 </li>

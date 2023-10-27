@@ -24,6 +24,7 @@ li {
   background: #ff3d00;
   border-radius: 10px;
   padding: 0.25em 0.5em;
+  cursor: pointer;
 }
 .grey {
   opacity: 0.2;

@@ -5,10 +5,19 @@
     <div>Prix d'achat</div>
     <div>Prix de vente</div>
   </li>
-  <li *ngFor="let product of listProduct">
-    <input type="text" value="{{product.nom}}">
-    <div>{{product.quantite}}</div>
-    <div>{{product.prix}}</div>
-    <div>{{product.prixVente}}</div>
+  <li *ngFor="let product of listProduct; let index = index">
+    <input (keyup)="$event.keyCode === 13 ? changeName(index, $event.target) : null" type="text"
+      value="{{ product.nom }}" />
+    <div>{{ product.quantite }}</div>
+    <input (keyup)="$event.keyCode === 13 ? changePrice(index, $event.target) : null" class="priceEdit" type="text"
+      value="{{ product.prix }}" />
+    <div>{{ product.prixVente }}</div>
+  </li>
+  <li class="bottom">
+    <input (keyup)="$event.keyCode === 13 ? addProduct($event.target) : null" id="nameInput" type="text" />
+    <input (keyup)="$event.keyCode === 13 ? addProduct($event.target) : null" type="number" name="quantityProduct"
+      id="quantityProduct">
+    <input (keyup)="$event.keyCode === 13 ? addProduct($event.target) : null" id="priceInput" type="number" />
+    <div>0€</div>
   </li>
 </ul>

@@ -14,6 +14,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/erp-app",
+            "baseHref": "./",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -40,8 +41,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "5kb",
-                  "maximumError": "10kb"
+                  "maximumWarning": "10kb",
+                  "maximumError": "15kb"
                 }
               ],
               "outputHashing": "all"

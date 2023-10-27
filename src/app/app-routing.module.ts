@@ -1,3 +1,7 @@
+import { ComptabiliteComponent } from './comptabilite/comptabilite.component';
+import { IncidentDailyComponent } from './incident-page/incident-daily/incident-daily.component';
+import { IncidentReportComponent } from './incident-page/incident-report/incident-report.component';
+import { IncidentFAQComponent } from './incident-page/incident-faq/incident-faq.component';
 import { CaisseComponent } from './caisse/caisse.component';
 import { IncidentPageComponent } from './incident-page/incident-page.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -8,6 +12,10 @@ import { StocksComponent } from './stocks/stocks.component';
 import { AddFournisseurComponent } from './stocks/add-fournisseur/add-fournisseur.component';
 import { ShowInventoryComponent } from './stocks/show-inventory/show-inventory.component';
 import { AddReapproComponent } from './stocks/add-reappro/add-reappro.component';
+import { DatabaseComponent } from './database/database.component';
+import { HorairesBoutiqueComponent } from './horaires-boutique/horaires-boutique.component';
+import { RessourcesHumainesComponent } from './ressources-humaines/ressources-humaines.component';
+import { CartesComponent } from './cartes/cartes.component';
 
 const routes: Routes = [{
   path: 'login',
@@ -28,7 +36,26 @@ const routes: Routes = [{
 },
 {
   path: 'incidents',
-  component: IncidentPageComponent
+  component: IncidentPageComponent,
+  children: [
+    {
+      path: '',
+      redirectTo: 'FAQ',
+      pathMatch: 'full'
+    },
+    {
+      path: 'FAQ',
+      component: IncidentFAQComponent
+    },
+    {
+      path: 'report',
+      component: IncidentReportComponent
+    },
+    {
+      path: 'daily',
+      component: IncidentDailyComponent
+    }
+  ]
 },
 {
   path: 'stocks',
@@ -53,8 +80,27 @@ const routes: Routes = [{
     }
   ]
 
+},
+{
+  path: 'database',
+  component: DatabaseComponent
+},
+{
+  path:'horaires',
+  component: HorairesBoutiqueComponent
+},
+{
+  path:'rh',
+  component: RessourcesHumainesComponent
+},
+{
+  path:'cartes',
+  component:CartesComponent
+},
+{
+  path:'comptabilite',
+  component:ComptabiliteComponent
 }
-
 ];
 
 @NgModule({

@@ -1,3 +1,4 @@
+import { FournisseurService } from './../service/fournisseur.service';
 import { Component } from '@angular/core';
 import { Incident } from '../incident';
 
@@ -8,7 +9,9 @@ import { Incident } from '../incident';
 })
 export class LandingPageComponent {
   listIncidents: Incident[] = [];
-  constructor() { }
+  constructor() {
+
+  }
 
   ngOnInit(): void {
     this.listIncidents.push({

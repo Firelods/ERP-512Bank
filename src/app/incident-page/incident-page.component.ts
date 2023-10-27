@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
 import { Incident } from '../incident';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-incident-page',
   templateUrl: './incident-page.component.html',
   styleUrls: ['./incident-page.component.css']
+
 })
 export class IncidentPageComponent {
   listIncidents: Incident[] = [];
   incidentSelected: Incident = { id: 0, title: 'incendie', description: '', date: new Date(), heure: '', type: '' };
-  constructor() {
+  constructor(public router: Router) {
     this.listIncidents.push({
       id: 1,
       title: 'Incident 1',
@@ -42,6 +45,11 @@ export class IncidentPageComponent {
       heure: '10:00',
       type: 'Feu'
     });
+  }
+  route()
+  {
+    return this.router.url.slice(11);
+
   }
 
 }

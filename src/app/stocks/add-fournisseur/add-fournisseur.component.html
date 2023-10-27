@@ -2,19 +2,20 @@
   <h3>Nouveau fournisseur</h3>
   <div class="formGroup">
     <label for="name">Nom du fournisseur</label>
-    <input type="text" name="name" id="name">
+    <input [formControl]="name" type="text" name="name" id="name" />
   </div>
   <div class="formGroup">
     <label for="siret">Numéro de SIRET</label>
-    <input type="text" name="siret" id="siret">
+    <input [formControl]="siret" type="text" name="siret" id="siret" />
   </div>
   <div class="formGroup">
     <mat-form-field appearance="fill">
       <mat-label>Produits proposés</mat-label>
       <mat-select [formControl]="productProposed" multiple>
-        <mat-option *ngFor="let product of productProposedList" [value]="product">{{product}}</mat-option>
+        <mat-option *ngFor="let product of productProposedList" [value]="product.idProduit">{{ product.nom
+          }}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
-  <button>Valider</button>
+  <button (click)="addFournisseur()">Valider</button>
 </form>

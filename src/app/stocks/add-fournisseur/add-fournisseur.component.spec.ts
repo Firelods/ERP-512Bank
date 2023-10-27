@@ -2,6 +2,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddFournisseurComponent } from './add-fournisseur.component';
 import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('AddFournisseurComponent', () => {
   let component: AddFournisseurComponent;
@@ -9,8 +13,8 @@ describe('AddFournisseurComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-
-      declarations: [AddFournisseurComponent, MatSelectModule]
+      imports: [MatSelectModule, MatFormFieldModule, ReactiveFormsModule, BrowserAnimationsModule, HttpClientTestingModule],
+      declarations: [AddFournisseurComponent]
     })
       .compileComponents();
 

@@ -7,11 +7,13 @@
 
   align-items: center;
 }
-
+.prod{
+  width: 100%;
+}
 .mainContainer {
   display: flex;
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   justify-content: center;
 }
 .middle {
@@ -542,4 +544,8 @@ button#redBg {
 
 button:disabled {
   background-color: var(--grey512) !important;
+}
+.displayError{
+  align-items: center;
+  justify-content: space-evenly;
 }

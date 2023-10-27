@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ReapproComponent } from './reappro.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('ReapproComponent', () => {
   let component: ReapproComponent;
@@ -8,9 +9,10 @@ describe('ReapproComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ReapproComponent ]
+      imports: [BrowserAnimationsModule],
+      declarations: [ReapproComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ReapproComponent);
     component = fixture.componentInstance;

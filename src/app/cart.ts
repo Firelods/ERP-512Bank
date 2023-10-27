@@ -1,6 +1,6 @@
 import { Produit } from "./produit";
 
 export interface Cart {
-  listProduct: { produit: Produit, quantity: number }[];
-  total: number;
+  listeProduits: { produit: Produit, quantity: number }[];
+  montant: number;
 }
